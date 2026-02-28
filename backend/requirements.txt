@@ -5,3 +5,8 @@ pymysql>=1.1.0
 cryptography>=42.0.0
 pydantic>=2.5.3
 python-dotenv>=1.0.1
+
+langchain
+langchain-google-genai
+google-generativeai
+python-dotenv
