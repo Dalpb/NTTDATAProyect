@@ -1,0 +1,5 @@
+[KB-ERR-105] Error 404 o 500 en el Sistema de Planillas / SAP:
+Este error ocurre generalmente después de una actualización de Windows o del navegador. La solución estándar es: 1) Limpiar la caché y cookies del navegador. 2) Abrir el sistema en una ventana de incógnito. 3) Si el error persiste, verificar que el cliente de VPN de Cisco esté conectado, ya que el sistema de planillas no expone su base de datos a redes públicas.
+
+[KB-ERR-201] Problemas con la Impresora del Piso 3 (Ricoh):
+La impresora Ricoh del tercer piso tiene un fallo conocido con el sensor de la bandeja 2. Si un usuario reporta que "no imprime" o "atasco de papel falso", el técnico debe pedirle al usuario que retire y vuelva a insertar la bandeja 2 firmemente. No es necesario enviar a un técnico físicamente para este paso inicial.

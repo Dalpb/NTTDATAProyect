@@ -1,0 +1,5 @@
+[POL-SEG-001] Política de Restablecimiento de Contraseñas:
+Bajo ninguna circunstancia el equipo de soporte de TI (Nivel 1 o Nivel 2) está autorizado a proporcionar contraseñas por chat o correo electrónico. Si un usuario olvida su contraseña de Active Directory, SAP o Correo Corporativo, debe usar el portal de autogestión (identidad.empresa.com). Si el portal falla, el técnico debe enviar un enlace de restablecimiento temporal de un solo uso al correo personal registrado del colaborador.
+
+[POL-SEG-002] Solicitud de Accesos a Carpetas Compartidas:
+Cualquier solicitud para acceder a las carpetas de "Finanzas", "Planillas" o "Gerencia" requiere la aprobación por escrito (ticket en estado aprobado) del gerente de dicha área. Si un usuario de marketing pide acceso a finanzas, denegar inmediatamente y cerrar el ticket indicando la política POL-SEG-002.

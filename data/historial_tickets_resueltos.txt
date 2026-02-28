@@ -1,0 +1,7 @@
+Ticket #9942 - Resuelto:
+Usuario reportó: "Mi pantalla está negra, la laptop prende pero no da imagen".
+Solución aplicada: Se le indicó al usuario que realizara un drenaje de energía estática (desconectar cargador, mantener presionado el botón de encendido por 30 segundos, volver a conectar y encender). El equipo volvió a dar video correctamente. Categoría: Hardware.
+
+Ticket #9980 - Resuelto:
+Usuario reportó: "El excel me dice que mi licencia expiró".
+Solución aplicada: Se ejecutó el script de renovación de tokens de Office 365 en segundo plano. Se le pidió al usuario reiniciar las aplicaciones de Office. Categoría: Software.

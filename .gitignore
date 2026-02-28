@@ -1,0 +1,6 @@
+venv
+.env
+__pycache__/
+*.pyc
+# Ocultar base de datos temporal si Chroma crea alguna carpeta local
+chroma_db/
