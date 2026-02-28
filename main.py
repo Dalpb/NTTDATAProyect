@@ -1,4 +1,9 @@
 import os
+from dotenv import load_dotenv
+
+# Esto busca el archivo .env en tu carpeta y carga las variables en os.environ
+load_dotenv()
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -13,7 +18,7 @@ from langchain_community.vectorstores import Chroma
 vectorstore = None
 
 # ==========================================
-# 1. LÓGICA DE INICIALIZACIÓN (Se ejecuta al prender el servidor)
+# 1. LÓGICA DE INICIALIZACIÓN
 # ==========================================
 def inicializar_base_vectorial():
     global vectorstore
@@ -32,6 +37,7 @@ def inicializar_base_vectorial():
     fragmentos = text_splitter.split_documents(documentos)
     
     # 3. Crear Embeddings con Gemini y guardar en Chroma (memoria)
+    # ¡Ahora tomará la llave automáticamente de tu .env!
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     vectorstore = Chroma.from_documents(documents=fragmentos, embedding=embeddings)
     print(f"RAG listo. {len(fragmentos)} fragmentos indexados.")
@@ -46,12 +52,10 @@ async def lifespan(app: FastAPI):
 # ==========================================
 app = FastAPI(title="Microservicio RAG - Búsqueda Vectorial", lifespan=lifespan)
 
-# Esquema de Entrada (Lo que envía tu Orquestador)
 class ConsultaRAG(BaseModel):
     query: str
-    k: int = 3  # Por defecto devolverá los 3 resultados más cercanos
+    k: int = 3
 
-# Esquema de Salida (Lo que responde este microservicio)
 class RespuestaRAG(BaseModel):
     resultados: List[str]
 
@@ -60,19 +64,12 @@ class RespuestaRAG(BaseModel):
 # ==========================================
 @app.post("/buscar", response_model=RespuestaRAG)
 async def buscar_contexto(consulta: ConsultaRAG):
-    """
-    Recibe una consulta del orquestador y devuelve los fragmentos de texto más relevantes.
-    """
     if not vectorstore:
-        raise HTTPException(status_code=500, detail="La base de datos vectorial no está inicializada o la carpeta /data está vacía.")
+        raise HTTPException(status_code=500, detail="La BD vectorial no está inicializada.")
     
     try:
-        # Busca los k fragmentos más similares
         docs_similares = vectorstore.similarity_search(consulta.query, k=consulta.k)
-        
-        # Extrae solo el texto limpio de los documentos encontrados
         textos_limpios = [doc.page_content for doc in docs_similares]
-        
         return RespuestaRAG(resultados=textos_limpios)
         
     except Exception as e:
